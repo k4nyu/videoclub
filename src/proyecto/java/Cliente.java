@@ -8,6 +8,7 @@ package proyecto.java;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,14 +19,14 @@ import java.util.logging.Logger;
  */
 public class Cliente {
     private String nombre,apellidos,direccion,telefono,email,dni;
-    private Date fechaAlta;
+    private Timestamp fechaAlta;
     private int idCliente;
 
     public Cliente() {
     }
     
 
-    public Cliente(String nombre, String apellidos, String direccion, String telefono, String email, String dni, Date fechaAlta, int idCliente) {
+    public Cliente(String nombre, String apellidos, String direccion, String telefono, String email, String dni, Timestamp fechaAlta, int idCliente) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
@@ -56,7 +57,7 @@ public class Cliente {
                         resultado.getString("telefono"), 
                         resultado.getString("email"),
                         resultado.getString("dni"), 
-                        resultado.getDate("fechaaltacli"),
+                        resultado.getTimestamp("fechaaltacli"),
                         resultado.getInt("idcli"));
             }
         } catch (SQLException ex) {
@@ -86,7 +87,7 @@ public class Cliente {
                     nuevo.setTelefono(rs.getString("telefono"));
                     nuevo.setDni(rs.getString("dni"));
                     nuevo.setEmail(rs.getString("email"));
-                    nuevo.setFechaAlta(rs.getDate("fechaaltacli"));
+                    nuevo.setFechaAlta(rs.getTimestamp("fechaaltacli"));
                   
                 }
             } catch (SQLException ex) {
@@ -110,7 +111,7 @@ public class Cliente {
                     nuevo.setTelefono(rs.getString("telefono"));
                     nuevo.setDni(rs.getString("dni"));
                     nuevo.setEmail(rs.getString("email"));
-                    nuevo.setFechaAlta(rs.getDate("fechaaltacli"));
+                    nuevo.setFechaAlta(rs.getTimestamp("fechaaltacli"));
                   
                 }
             } catch (SQLException ex) {
@@ -171,7 +172,7 @@ public class Cliente {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(Timestamp fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 

@@ -52,6 +52,18 @@ public class SQLHelper {
         }
        return devolucion;
    }
+   public static int ejecutarUpdate(String update){
+       int devolucion=0;
+        try {
+            Connection conexion=DriverManager.getConnection("jdbc:mysql://"+host+"/"+db,user ,pass);
+            Statement comando= conexion.createStatement();
+            devolucion = comando.executeUpdate(update);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return devolucion;
+   }
    public static Statement getStatement(){
         try {
             Connection conexion=DriverManager.getConnection("jdbc:mysql://"+host+"/"+db,user ,pass);

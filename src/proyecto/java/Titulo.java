@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,8 +20,20 @@ import java.util.logging.Logger;
  */
 public class Titulo {
     private String titulo, sinopsis;
-    private Date fechaAlta;
+    private Timestamp fechaAlta;
     private int idTit;
+
+    public Titulo() {
+    }
+
+    
+    public Titulo(String titulo, String sinopsis, Timestamp fechaAlta, int idTit) {
+        this.titulo = titulo;
+        this.sinopsis = sinopsis;
+        this.fechaAlta = fechaAlta;
+        this.idTit = idTit;
+    }
+    
    public static Titulo insertarTitulo(String titulo, String sinopsis){
        Titulo nuevo=null;
        try {
@@ -49,7 +62,7 @@ public class Titulo {
                     nuevo=new Titulo();
                     nuevo.setIdTit(rs.getInt("idtit"));
                     nuevo.setTitulo(rs.getString("titulo"));
-                    nuevo.setFechaAlta(rs.getDate("fechaalta"));
+                    nuevo.setFechaAlta(rs.getTimestamp("fechaalta"));
                     nuevo.setSinopsis(rs.getString("sinopsis"));
                 }
             } catch (SQLException ex) {
@@ -76,7 +89,7 @@ public class Titulo {
         this.sinopsis = sinopsis;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(Timestamp fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -96,7 +109,7 @@ public class Titulo {
         return sinopsis;
     }
 
-    public Date getFechaAlta() {
+    public Timestamp getFechaAlta() {
         return fechaAlta;
     }
    

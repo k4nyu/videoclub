@@ -7,9 +7,11 @@ package proyecto.java;
 
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Vector;
@@ -146,6 +148,11 @@ public class VistaClientes extends javax.swing.JDialog {
         // to remove the border
         btVolver.setBorder(null);
         btVolver.setBorder(null);
+        btVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVolverActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -176,6 +183,11 @@ public class VistaClientes extends javax.swing.JDialog {
         jLabel2.setText("Búsqueda: ");
 
         btEdit.setEnabled(false);
+        btEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditActionPerformed(evt);
+            }
+        });
 
         btAlquiler.setEnabled(false);
 
@@ -278,6 +290,40 @@ private void buscar() {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
        buscar();
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void btVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVolverActionPerformed
+        dispose();
+    }//GEN-LAST:event_btVolverActionPerformed
+
+    private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
+       if(esCliente){
+           int fila= jTable1.getSelectedRow();
+           int idcliente= (int)jTable1.getModel().getValueAt(fila, 0);
+           String nombre=(String)jTable1.getModel().getValueAt(fila, 1);
+           String apellidos=(String)jTable1.getModel().getValueAt(fila, 2);
+           String direccion = (String)jTable1.getModel().getValueAt(fila, 3);
+           String telefono = (String)jTable1.getModel().getValueAt(fila, 4);
+           String email= (String)jTable1.getModel().getValueAt(fila, 5);
+           String dni= (String)jTable1.getModel().getValueAt(fila, 6);
+           Timestamp fechaAlta=(Timestamp)jTable1.getModel().getValueAt(fila, 7);
+           Cliente cliente= new Cliente(nombre, apellidos, direccion, telefono, email, dni, fechaAlta, idcliente);
+           VistaEditarCliente editarcliente= new VistaEditarCliente(null, true, cliente);
+           editarcliente.setVisible(true);
+           buscar();
+       }
+       else{
+           int fila= jTable1.getSelectedRow();
+           int idtit= (int)jTable1.getModel().getValueAt(fila, 0);
+           String titulo=(String)jTable1.getModel().getValueAt(fila, 1);
+           Timestamp fechaAlta=(Timestamp)jTable1.getModel().getValueAt(fila, 2);
+           String sinopsis = (String)jTable1.getModel().getValueAt(fila, 3);
+           Titulo titulox= new Titulo(titulo, sinopsis, fechaAlta, idtit);
+           VistaEditarCatalogo editarcatalogo = new VistaEditarCatalogo(null, true, titulox);
+           editarcatalogo.setVisible(true);
+           buscar();
+       }
+            
+    }//GEN-LAST:event_btEditActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlquiler;
