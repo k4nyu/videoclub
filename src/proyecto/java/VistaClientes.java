@@ -142,6 +142,11 @@ public class VistaClientes extends javax.swing.JDialog {
         jLabel1.setText("Clientes");
 
         btNuevo.setBorder(null);
+        btNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNuevoActionPerformed(evt);
+            }
+        });
 
         // to remote the spacing between the image and button's borders
         btVolver.setMargin(new Insets(0, 0, 0, 0));
@@ -324,6 +329,17 @@ private void buscar() {
        }
             
     }//GEN-LAST:event_btEditActionPerformed
+
+    private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed
+        javax.swing.JDialog editarcliente=null;
+        if(esCliente){
+         editarcliente=new VistaEditarCliente(null, true);
+        }else{
+         editarcliente=new VistaEditarCatalogo(null,true);
+        }
+           editarcliente.setVisible(true);
+           buscar();
+    }//GEN-LAST:event_btNuevoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlquiler;

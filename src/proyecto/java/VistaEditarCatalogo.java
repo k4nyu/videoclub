@@ -22,6 +22,12 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
         initComponents();
         tfTitulo.setText(titulo.getTitulo());
         taSinopsis.setText(titulo.getSinopsis());
+        this.btLimpiar.setEnabled(false);
+    }
+    public VistaEditarCatalogo(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+       
     }
 
     /**
@@ -74,7 +80,10 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
         lbApellidos.setText("Sinopsis: ");
 
         taSinopsis.setColumns(20);
+        taSinopsis.setLineWrap(true);
         taSinopsis.setRows(5);
+        taSinopsis.setWrapStyleWord(true);
+        taSinopsis.setDoubleBuffered(true);
         jScrollPane1.setViewportView(taSinopsis);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,8 +144,16 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-        String update="UPDATE titulo SET titulo='"+tfTitulo.getText()
+        String update="";
+        if(this.btLimpiar.isEnabled()){
+        update="INSERT INTO titulo(titulo,sinopsis,fechaalta) VALUES('"+tfTitulo.getText()
+        +"', '"+taSinopsis.getText()+"',CURRENT_TIMESTAMP)";
+       
+        }else{
+        update="UPDATE titulo SET titulo='"+tfTitulo.getText()
         +"', sinopsis='"+taSinopsis.getText()+"' WHERE idtit="+titulo.getIdTit();
+        }
+        
         SQLHelper.ejecutarUpdate(update);
         dispose();
     }//GEN-LAST:event_btAceptarActionPerformed
