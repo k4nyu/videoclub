@@ -19,10 +19,10 @@ public class VistaClientes extends javax.swing.JDialog {
     /**
      * Creates new form Clientes
      */
-    private static Statement s;
-    public VistaClientes(java.awt.Frame parent, boolean modal, Statement s) {
+    private static boolean esCliente;
+    public VistaClientes(java.awt.Frame parent, boolean modal,boolean esCliente) {
         super(parent, modal);
-        this.s=s;
+        this.esCliente=esCliente;
         initComponents();
     }
 
@@ -189,7 +189,7 @@ public class VistaClientes extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VistaClientes dialog = new VistaClientes(new javax.swing.JFrame(), true, s);
+                VistaClientes dialog = new VistaClientes(new javax.swing.JFrame(), true,true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
