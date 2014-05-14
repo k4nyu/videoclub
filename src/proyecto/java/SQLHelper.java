@@ -33,8 +33,7 @@ public class SQLHelper {
             Connection conexion=DriverManager.getConnection("jdbc:mysql://"+host+"/"+db,user ,pass);
             Statement comando= conexion.createStatement();
             devolucion=comando.getGeneratedKeys();
-            comando.close();
-            conexion.close();
+            
         } catch (SQLException ex) {
             Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -46,8 +45,7 @@ public class SQLHelper {
             Connection conexion=DriverManager.getConnection("jdbc:mysql://"+host+"/"+db,user ,pass);
             Statement comando= conexion.createStatement();
             devolucion=comando.executeQuery(consulta);
-            comando.close();
-            conexion.close();
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,7 +61,7 @@ public class SQLHelper {
         }
         return null;
    }
-   public static ResultSet buscar(String tabla,HashMap<String,String> busqueda){
+   public static ResultSet buscar(String tabla,HashMap<String,String> busqueda,int limite, int offset,String orderby){
       ResultSet devolucion=null;
         String consulta="SELECT * FROM "+tabla;
         if(!busqueda.isEmpty()){
@@ -73,8 +71,13 @@ public class SQLHelper {
                 consulta=consulta.replace("$#$"," UPPER("+key+") LIKE UPPER('%"+busqueda.get(key)+"%') OR$#$");
             }
             consulta=consulta.replace("OR$#$", "");
-            return ejecutarConsulta(consulta);
+            
+            
         }
-      return devolucion;
+        consulta+="ORDER BY "+orderby+" LIMIT "+limite+" OFFSET "+offset;
+      return ejecutarConsulta(consulta);
+   }
+   public static ResultSet buscar(String tabla,HashMap<String,String> busqueda,int limite, int offset){
+    return buscar( tabla,busqueda,limite, offset,"1 ASC");
    }
 }

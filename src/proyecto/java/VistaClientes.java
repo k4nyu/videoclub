@@ -3,12 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package proyecto.java;
 
 import java.awt.Insets;
+import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,60 +28,56 @@ public class VistaClientes extends javax.swing.JDialog {
      * Creates new form Clientes
      */
     private static boolean esCliente;
-    public VistaClientes(java.awt.Frame parent, boolean modal,boolean esCliente) {
+    String[] cabecera = null;
+        String tabla = "";
+        String[] campos = null;
+
+    public VistaClientes(java.awt.Frame parent, boolean modal, boolean esCliente) {
         super(parent, modal);
-        this.esCliente=esCliente;
+        this.esCliente = esCliente;
         initComponents();
-        if(esCliente){
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID Cliente", "Nombre", "Apellidos", "Dirección", "Teléfono", "E-mail", "DNI", "Fecha Alta"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        }else{
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID Título", "Título", "Sinopsis","Fecha Alta"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        }
         
+        if (esCliente) {
+            tabla = "cliente";
+            jLabel1.setText("Clientes");
+            cabecera = new String[]{
+                "ID Cliente", "Nombre", "Apellidos", "Dirección", "Teléfono", "E-mail", "DNI", "Fecha Alta"
+            };
+            campos = new String[]{
+                "idcli",
+                "nombre",
+                "apellidos",
+                "direccion",
+                "telefono",
+                "email",
+                "dni",
+                "fechaltacli"};
+        } else {
+            tabla = "titulo";
+            jLabel1.setText("Catálogo");
+            cabecera = new String[]{
+                "ID Título", "Título",  "Fecha Alta","Sinopsis"
+            };
+            campos = new String[]{
+                "idtit",
+                "titulo",
+                "fechaalta",
+                "sinopsis"};
+
+        }
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+           cabecera){
+
+            @Override
+            public boolean isCellEditable(int i, int i1) {
+                return false; //To change body of generated methods, choose Tools | Templates.
+            }
+        }
+        );
+      
+        buscar();
     }
 
     /**
@@ -103,7 +107,17 @@ public class VistaClientes extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField1KeyTyped(evt);
@@ -213,10 +227,44 @@ public class VistaClientes extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void buscar() {
+        try {
+            HashMap<String, String> mapa = new HashMap<String, String>();
+            Vector cab=new Vector(Arrays.asList(cabecera));
+            Vector data=new Vector();
+            for(String campo:campos){
+                mapa.put(campo,jTextField1.getText());
+            }
+            ResultSet rs=SQLHelper.buscar(tabla, mapa,500,0);
+            while(rs.next()){
+                Vector tupla=new Vector();
+                for(int i=1;i<=cab.size();i++){
+                    tupla.add(rs.getObject(i));
+                }
+                data.add(tupla);
+            }
+            jTable1.setModel(new DefaultTableModel(data, cab){
 
+            @Override
+            public boolean isCellEditable(int i, int i1) {
+                return false; //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        
+
     }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+       buscar();
+    }//GEN-LAST:event_btBuscarActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+       buscar();
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,7 +296,7 @@ public class VistaClientes extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VistaClientes dialog = new VistaClientes(new javax.swing.JFrame(), true,true);
+                VistaClientes dialog = new VistaClientes(new javax.swing.JFrame(), true, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
