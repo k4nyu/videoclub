@@ -19,10 +19,8 @@ public class VistaClientes extends javax.swing.JDialog {
     /**
      * Creates new form Clientes
      */
-    private static Statement s;
-    public VistaClientes(java.awt.Frame parent, boolean modal, Statement s) {
+    public VistaClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.s=s;
         initComponents();
     }
 
@@ -107,7 +105,6 @@ public class VistaClientes extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
                                 .addComponent(jTextField1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btBuscar)
@@ -152,8 +149,8 @@ public class VistaClientes extends javax.swing.JDialog {
                             .addComponent(btAlquiler, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -189,7 +186,7 @@ public class VistaClientes extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VistaClientes dialog = new VistaClientes(new javax.swing.JFrame(), true, s);
+                VistaClientes dialog = new VistaClientes(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
