@@ -6,6 +6,9 @@
 
 package proyecto.java;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Kanyu
@@ -38,8 +41,8 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
         btCancelar = new javax.swing.JButton();
         btAceptar = new javax.swing.JButton();
         lbEditar = new javax.swing.JLabel();
-        lbNombre = new javax.swing.JLabel();
-        lbApellidos = new javax.swing.JLabel();
+        lbTitulo = new javax.swing.JLabel();
+        lbSinopsis = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taSinopsis = new javax.swing.JTextArea();
 
@@ -67,11 +70,11 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
         });
 
         lbEditar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbEditar.setText("Editar Producto");
+        lbEditar.setText("Editar Título");
 
-        lbNombre.setText("Titulo: ");
+        lbTitulo.setText("Titulo: ");
 
-        lbApellidos.setText("Sinopsis: ");
+        lbSinopsis.setText("Sinopsis: ");
 
         taSinopsis.setColumns(20);
         taSinopsis.setRows(5);
@@ -91,8 +94,8 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbApellidos)
-                            .addComponent(lbNombre))
+                            .addComponent(lbSinopsis)
+                            .addComponent(lbTitulo))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -112,14 +115,14 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
                     .addComponent(btLimpiar))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbNombre)
+                    .addComponent(lbTitulo)
                     .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbApellidos)
-                        .addGap(0, 230, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addComponent(lbSinopsis)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAceptar)
@@ -135,10 +138,27 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-        String update="UPDATE titulo SET titulo='"+tfTitulo.getText()
-        +"', sinopsis='"+taSinopsis.getText()+"' WHERE idtit="+titulo.getIdTit();
+        String titulox, sinopsis;
+        titulox= tfTitulo.getText();
+        sinopsis=taSinopsis.getText();
+        if(titulox.isEmpty() || sinopsis.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "¡Hay campos obligatorios que están vacíos! Complétalos, por favor.");
+            if(titulox.isEmpty()){
+                lbTitulo.setText("*Título: ");
+                lbTitulo.setForeground(Color.red);
+            }
+            if(sinopsis.isEmpty()){
+                lbSinopsis.setText("*Sinopsis: ");
+                lbSinopsis.setForeground(Color.red);
+            }
+            return;
+        }
+        else{
+        String update="UPDATE titulo SET titulo='"+titulox
+        +"', sinopsis='"+sinopsis+"' WHERE idtit="+titulo.getIdTit();
         SQLHelper.ejecutarUpdate(update);
         dispose();
+        }
     }//GEN-LAST:event_btAceptarActionPerformed
 
     private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
@@ -193,9 +213,9 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btLimpiar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbApellidos;
     private javax.swing.JLabel lbEditar;
-    private javax.swing.JLabel lbNombre;
+    private javax.swing.JLabel lbSinopsis;
+    private javax.swing.JLabel lbTitulo;
     private javax.swing.JTextArea taSinopsis;
     private javax.swing.JTextField tfTitulo;
     // End of variables declaration//GEN-END:variables
