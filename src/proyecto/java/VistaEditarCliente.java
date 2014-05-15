@@ -20,7 +20,7 @@ public class VistaEditarCliente extends javax.swing.JDialog {
     /**
      * Creates new form VistaEditarCliente
      */
-    private static Cliente cliente;
+    private  Cliente cliente=null;
     public VistaEditarCliente(java.awt.Frame parent, boolean modal, Cliente cliente) {
         super(parent, modal);
         this.cliente=cliente;
@@ -30,7 +30,12 @@ public class VistaEditarCliente extends javax.swing.JDialog {
         tfDireccion.setText(cliente.getDireccion());
         tfTelefono.setText(cliente.getTelefono());
         tfEmail.setText(cliente.getEmail());
-        tfDNI.setText(cliente.getDni());
+        tfDNI.setText(cliente.getDni()); 
+         this.btLimpiar.setEnabled(false);
+    }
+    public VistaEditarCliente(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+         initComponents();  
     }
 
     /**
@@ -205,6 +210,7 @@ public class VistaEditarCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
+//<<<<<<< HEAD
         String nombre, apellidos, direccion, telefono, email, dni;
         nombre= tfNombre.getText();
         apellidos=tfApellidos.getText();
@@ -243,6 +249,28 @@ public class VistaEditarCliente extends javax.swing.JDialog {
                 +"', email='"+email
                 +"', dni='"+dni
                 +"' WHERE idcli="+cliente.getIdCliente();
+//=======
+//        String update="";
+//        if(btLimpiar.isEnabled()){
+//          update="INSERT INTO cliente "
+//                + "(nombre, apellidos, direccion, telefono, email, dni,fechaltacli)"
+//                + " VALUES('"+tfNombre.getText()
+//                +"','"+tfApellidos.getText()
+//                +"','"+tfDireccion.getText()
+//                +"','"+tfTelefono.getText()
+//                +"','"+tfEmail.getText()
+//                +"','"+tfDNI.getText()
+//                +"', CURRENT_TIMESTAMP)";
+//        }else{
+//            
+//            update="UPDATE cliente SET nombre='"+tfNombre.getText()
+//                +"', apellidos='"+tfApellidos.getText()
+//                +"', direccion='"+tfDireccion.getText()
+//                +"', telefono='"+tfTelefono.getText()
+//                +"', email='"+tfEmail.getText()
+//                +"', dni='"+tfDNI.getText()
+//                +"' WHERE idcli="+cliente.getIdCliente();}
+//>>>>>>> origin/master
         SQLHelper.ejecutarUpdate(update);
         dispose();
     }//GEN-LAST:event_btAceptarActionPerformed
@@ -259,44 +287,7 @@ public class VistaEditarCliente extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaEditarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaEditarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaEditarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaEditarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                VistaEditarCliente dialog = new VistaEditarCliente(new javax.swing.JFrame(), true, cliente);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAceptar;
