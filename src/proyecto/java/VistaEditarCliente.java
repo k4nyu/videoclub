@@ -31,7 +31,7 @@ public class VistaEditarCliente extends javax.swing.JDialog {
         tfTelefono.setText(cliente.getTelefono());
         tfEmail.setText(cliente.getEmail());
         tfDNI.setText(cliente.getDni()); 
-//         this.btLimpiar.setEnabled(false);
+         this.btLimpiar.setEnabled(false);
     }
     public VistaEditarCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -69,17 +69,17 @@ public class VistaEditarCliente extends javax.swing.JDialog {
         lbEditar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbEditar.setText("Editar Cliente");
 
-        lbNombre.setText("Nombre: ");
+        lbNombre.setText("Nombre:");
 
-        lbApellidos.setText("Apellidos: ");
+        lbApellidos.setText("Apellidos:");
 
-        lbDireccion.setText("Dirección: ");
+        lbDireccion.setText("Dirección:");
 
-        lbTelefono.setText("Teléfono: ");
+        lbTelefono.setText("Teléfono:");
 
-        lbEmail.setText("Email: ");
+        lbEmail.setText("Email:");
 
-        lbDNI.setText("DNI: ");
+        lbDNI.setText("DNI:");
 
         btAceptar.setText("Aceptar");
         btAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -115,24 +115,20 @@ public class VistaEditarCliente extends javax.swing.JDialog {
                         .addComponent(lbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                            .addComponent(lbTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lbDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(68, 68, 68)
+                                        .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(52, 52, 52)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lbDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lbApellidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(53, 53, 53)
-                                        .addComponent(lbTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(24, 24, 24)))
+                                            .addComponent(lbApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
@@ -146,7 +142,7 @@ public class VistaEditarCliente extends javax.swing.JDialog {
                             .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfDNI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,11 +154,9 @@ public class VistaEditarCliente extends javax.swing.JDialog {
                         .addComponent(btLimpiar))
                     .addComponent(lbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(lbNombre))
-                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbNombre))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,9 +174,9 @@ public class VistaEditarCliente extends javax.swing.JDialog {
                     .addComponent(lbEmail)
                     .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbDNI)
-                    .addComponent(tfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbDNI))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAceptar)
@@ -209,24 +203,44 @@ public class VistaEditarCliente extends javax.swing.JDialog {
         if(nombre.isEmpty() || apellidos.isEmpty() || direccion.isEmpty() || telefono.isEmpty() ||dni.isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "¡Hay campos obligatorios que están vacíos! Complétalos, por favor.");
             if(nombre.isEmpty()){
-                lbNombre.setText("*Nombre: ");
+                lbNombre.setText("*Nombre:");
                 lbNombre.setForeground(Color.red);
             }
+            else{
+                lbNombre.setText("Nombre:");
+                lbNombre.setForeground(Color.black);
+            }
             if(apellidos.isEmpty()){
-                lbApellidos.setText("*Apellidos: ");
+                lbApellidos.setText("*Apellidos:");
                 lbApellidos.setForeground(Color.red);
             }
+            else{
+                lbApellidos.setText("Apellidos:");
+                lbApellidos.setForeground(Color.black);
+            }
             if(direccion.isEmpty()){
-                lbDireccion.setText("*Dirección: ");
+                lbDireccion.setText("*Dirección:");
                 lbDireccion.setForeground(Color.red);
             }
+            else{
+                lbDireccion.setText("Direccion:");
+                lbDireccion.setForeground(Color.black);
+            }
             if(telefono.isEmpty()){
-                lbTelefono.setText("*Teléfono: ");
+                lbTelefono.setText("*Teléfono:");
                 lbTelefono.setForeground(Color.red);
             }
+            else{
+                lbTelefono.setText("Teléfono:");
+                lbTelefono.setForeground(Color.black);
+            }
             if(dni.isEmpty()){
-                lbDNI.setText("*DNI: ");
+                lbDNI.setText("*DNI:");
                 lbDNI.setForeground(Color.red);
+            }
+            else{
+                lbDNI.setText("DNI:");
+                lbDNI.setForeground(Color.black);
             }
             return;
         }

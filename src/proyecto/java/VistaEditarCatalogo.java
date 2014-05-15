@@ -25,7 +25,7 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
         initComponents();
         tfTitulo.setText(titulo.getTitulo());
         taSinopsis.setText(titulo.getSinopsis());
-//        this.btLimpiar.setEnabled(false);
+        this.btLimpiar.setEnabled(false);
     }
     public VistaEditarCatalogo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -78,9 +78,9 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
         lbEditar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbEditar.setText("Editar Título");
 
-        lbTitulo.setText("Titulo: ");
+        lbTitulo.setText("Titulo:");
 
-        lbSinopsis.setText("Sinopsis: ");
+        lbSinopsis.setText("Sinopsis:");
 
         taSinopsis.setColumns(20);
         taSinopsis.setLineWrap(true);
@@ -96,24 +96,30 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btLimpiar)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(53, 53, 53)
+                        .addComponent(lbSinopsis, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(btAceptar)
+                        .addGap(128, 128, 128)
+                        .addComponent(btCancelar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbSinopsis)
-                            .addComponent(lbTitulo))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btAceptar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btCancelar))
-                            .addComponent(tfTitulo)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                                .addGap(65, 65, 65)
+                                .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(btLimpiar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfTitulo)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,9 +163,17 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
                 lbTitulo.setText("*Título: ");
                 lbTitulo.setForeground(Color.red);
             }
+            else{
+                lbTitulo.setText("Titulo: ");
+                lbTitulo.setForeground(Color.black);
+            }
             if(sinopsis.isEmpty()){
                 lbSinopsis.setText("*Sinopsis: ");
                 lbSinopsis.setForeground(Color.red);
+            }
+            else{
+                lbSinopsis.setText("Sinopsis: ");
+                lbSinopsis.setForeground(Color.black);
             }
             return;
         }
