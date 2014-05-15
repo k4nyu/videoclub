@@ -33,27 +33,32 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lbNombre" min="-2" pref="53" max="-2" attributes="0"/>
-                                      <Component id="lbDireccion" alignment="1" min="-2" pref="59" max="-2" attributes="0"/>
-                                      <Component id="lbEmail" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="lbApellidos" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lbNombre" min="-2" pref="53" max="-2" attributes="0"/>
+                                          <Component id="lbDireccion" alignment="1" min="-2" pref="59" max="-2" attributes="0"/>
+                                          <Component id="lbApellidos" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                                      <Component id="lbTelefono" min="-2" pref="64" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lbEmail" min="-2" pref="40" max="-2" attributes="0"/>
                                   <Component id="lbDNI" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                              <Component id="lbTelefono" min="-2" pref="64" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" attributes="0">
@@ -65,11 +70,11 @@
                                   <Component id="tfNombre" alignment="0" min="-2" pref="215" max="-2" attributes="0"/>
                                   <Component id="tfApellidos" alignment="0" min="-2" pref="215" max="-2" attributes="0"/>
                                   <Component id="tfDireccion" alignment="0" min="-2" pref="215" max="-2" attributes="0"/>
-                                  <Component id="tfTelefono" alignment="0" min="-2" pref="215" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="tfEmail" alignment="0" min="-2" pref="215" max="-2" attributes="0"/>
-                          <Component id="tfDNI" min="-2" pref="215" max="-2" attributes="0"/>
+                          <Component id="tfDNI" alignment="1" min="-2" pref="215" max="-2" attributes="0"/>
+                          <Component id="tfTelefono" min="-2" pref="215" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -106,39 +111,27 @@
                   <Component id="tfDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Component id="lbTelefono" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="tfTelefono" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="lbDNI" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="tfDNI" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="lbDNI" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfDNI" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btAceptar" min="-2" max="-2" attributes="0"/>
-                  <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
