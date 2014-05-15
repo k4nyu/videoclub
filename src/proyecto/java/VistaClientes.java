@@ -331,13 +331,13 @@ private void buscar() {
     }//GEN-LAST:event_btEditActionPerformed
 
     private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed
-        javax.swing.JDialog editarcliente=null;
+        javax.swing.JDialog editar=null;
         if(esCliente){
-         editarcliente=new VistaEditarCliente(null, true);
+         editar=new VistaCrearCliente(null, true);
         }else{
-         editarcliente=new VistaEditarCatalogo(null,true);
+         editar=new VistaCrearTitulo(null,true);
         }
-           editarcliente.setVisible(true);
+           editar.setVisible(true);
            buscar();
     }//GEN-LAST:event_btNuevoActionPerformed
 

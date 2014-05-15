@@ -13,24 +13,14 @@ import javax.swing.JOptionPane;
  *
  * @author Kanyu
  */
-public class VistaEditarCatalogo extends javax.swing.JDialog {
+public class VistaCrearTitulo extends javax.swing.JDialog {
 
     /**
-     * Creates new form VistaEditarCatalogo
+     * Creates new form VistaCrearTitulo
      */
-    private static Titulo titulo;
-    public VistaEditarCatalogo(java.awt.Frame parent, boolean modal, Titulo titulo) {
-        super(parent, modal);
-        this.titulo=titulo;
-        initComponents();
-        tfTitulo.setText(titulo.getTitulo());
-        taSinopsis.setText(titulo.getSinopsis());
-//        this.btLimpiar.setEnabled(false);
-    }
-    public VistaEditarCatalogo(java.awt.Frame parent, boolean modal) {
+    public VistaCrearTitulo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-       
     }
 
     /**
@@ -42,17 +32,35 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tfTitulo = new javax.swing.JTextField();
-        btLimpiar = new javax.swing.JButton();
-        btCancelar = new javax.swing.JButton();
-        btAceptar = new javax.swing.JButton();
-        lbEditar = new javax.swing.JLabel();
-        lbTitulo = new javax.swing.JLabel();
-        lbSinopsis = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taSinopsis = new javax.swing.JTextArea();
+        lbSinopsis = new javax.swing.JLabel();
+        lbTitulo = new javax.swing.JLabel();
+        lbEditar = new javax.swing.JLabel();
+        tfTitulo = new javax.swing.JTextField();
+        btAceptar = new javax.swing.JButton();
+        btLimpiar = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        taSinopsis.setColumns(20);
+        taSinopsis.setRows(5);
+        jScrollPane1.setViewportView(taSinopsis);
+
+        lbSinopsis.setText("Sinopsis: ");
+
+        lbTitulo.setText("Titulo: ");
+
+        lbEditar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lbEditar.setText("Crear Título");
+
+        btAceptar.setText("Aceptar");
+        btAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAceptarActionPerformed(evt);
+            }
+        });
 
         btLimpiar.setText("Limpiar todo");
         btLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -68,27 +76,6 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
             }
         });
 
-        btAceptar.setText("Aceptar");
-        btAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAceptarActionPerformed(evt);
-            }
-        });
-
-        lbEditar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbEditar.setText("Editar Título");
-
-        lbTitulo.setText("Titulo: ");
-
-        lbSinopsis.setText("Sinopsis: ");
-
-        taSinopsis.setColumns(20);
-        taSinopsis.setLineWrap(true);
-        taSinopsis.setRows(5);
-        taSinopsis.setWrapStyleWord(true);
-        taSinopsis.setDoubleBuffered(true);
-        jScrollPane1.setViewportView(taSinopsis);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,22 +85,23 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(btLimpiar)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(lbEditar))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addGap(32, 32, 32)
+                        .addComponent(lbSinopsis, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btAceptar)
+                        .addGap(128, 128, 128)
+                        .addComponent(btCancelar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbSinopsis)
-                            .addComponent(lbTitulo))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btAceptar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btCancelar))
-                            .addComponent(tfTitulo)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +116,7 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
                     .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbSinopsis)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -142,18 +130,13 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        dispose();
-    }//GEN-LAST:event_btCancelarActionPerformed
-
     private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-//<<<<<<< HEAD
-        String titulox, sinopsis;
-        titulox= tfTitulo.getText();
+        String titulo, sinopsis;
+        titulo= tfTitulo.getText();
         sinopsis=taSinopsis.getText();
-        if(titulox.isEmpty() || sinopsis.isEmpty()){
+        if(titulo.isEmpty() || sinopsis.isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "¡Hay campos obligatorios que están vacíos! Complétalos, por favor.");
-            if(titulox.isEmpty()){
+            if(titulo.isEmpty()){
                 lbTitulo.setText("*Título: ");
                 lbTitulo.setForeground(Color.red);
             }
@@ -164,21 +147,7 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
             return;
         }
         else{
-        String update="UPDATE titulo SET titulo='"+titulox
-        +"', sinopsis='"+sinopsis+"' WHERE idtit="+titulo.getIdTit();
-//=======
-//        String update="";
-//        if(this.btLimpiar.isEnabled()){
-//        update="INSERT INTO titulo(titulo,sinopsis,fechaalta) VALUES('"+tfTitulo.getText()
-//        +"', '"+taSinopsis.getText()+"',CURRENT_TIMESTAMP)";
-//       
-//        }else{
-//        update="UPDATE titulo SET titulo='"+tfTitulo.getText()
-//        +"', sinopsis='"+taSinopsis.getText()+"' WHERE idtit="+titulo.getIdTit();
-//        }
-//        
-//>>>>>>> origin/master
-        SQLHelper.ejecutarUpdate(update);
+        Titulo.insertarTitulo(titulo, sinopsis);
         dispose();
         }
     }//GEN-LAST:event_btAceptarActionPerformed
@@ -187,6 +156,10 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
         tfTitulo.setText("");
         taSinopsis.setText("");
     }//GEN-LAST:event_btLimpiarActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,20 +178,20 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaEditarCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCrearTitulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaEditarCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCrearTitulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaEditarCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCrearTitulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaEditarCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCrearTitulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VistaEditarCatalogo dialog = new VistaEditarCatalogo(new javax.swing.JFrame(), true, titulo);
+                VistaCrearTitulo dialog = new VistaCrearTitulo(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
