@@ -195,6 +195,11 @@ public class VistaClientes extends javax.swing.JDialog {
         });
 
         btAlquiler.setEnabled(false);
+        btAlquiler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAlquilerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -340,6 +345,24 @@ private void buscar() {
            editar.setVisible(true);
            buscar();
     }//GEN-LAST:event_btNuevoActionPerformed
+
+    private void btAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlquilerActionPerformed
+        if(esCliente){
+            int fila= jTable1.getSelectedRow();
+           int idcliente= (int)jTable1.getModel().getValueAt(fila, 0);
+           String nombre=(String)jTable1.getModel().getValueAt(fila, 1);
+           String apellidos=(String)jTable1.getModel().getValueAt(fila, 2);
+           String direccion = (String)jTable1.getModel().getValueAt(fila, 3);
+           String telefono = (String)jTable1.getModel().getValueAt(fila, 4);
+           String email= (String)jTable1.getModel().getValueAt(fila, 5);
+           String dni= (String)jTable1.getModel().getValueAt(fila, 6);
+           Timestamp fechaAlta=(Timestamp)jTable1.getModel().getValueAt(fila, 7);
+           Cliente cliente= new Cliente(nombre, apellidos, direccion, telefono, email, dni, fechaAlta, idcliente);
+           VistaAlquilados alquilados= new VistaAlquilados(null, true, cliente);
+           alquilados.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_btAlquilerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlquiler;
