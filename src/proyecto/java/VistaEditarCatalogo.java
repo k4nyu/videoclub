@@ -164,20 +164,17 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
             return;
         }
         else{
-        String update="UPDATE titulo SET titulo='"+titulox
-        +"', sinopsis='"+sinopsis+"' WHERE idtit="+titulo.getIdTit();
-//=======
-//        String update="";
-//        if(this.btLimpiar.isEnabled()){
-//        update="INSERT INTO titulo(titulo,sinopsis,fechaalta) VALUES('"+tfTitulo.getText()
-//        +"', '"+taSinopsis.getText()+"',CURRENT_TIMESTAMP)";
-//       
-//        }else{
-//        update="UPDATE titulo SET titulo='"+tfTitulo.getText()
-//        +"', sinopsis='"+taSinopsis.getText()+"' WHERE idtit="+titulo.getIdTit();
-//        }
-//        
-//>>>>>>> origin/master
+
+        String update="";
+        if(this.btLimpiar.isEnabled()){
+        update="INSERT INTO titulo(titulo,sinopsis,fechaalta) VALUES('"+tfTitulo.getText()
+        +"', '"+taSinopsis.getText()+"',CURRENT_TIMESTAMP)";
+       
+        }else{
+        update="UPDATE titulo SET titulo='"+tfTitulo.getText()
+        +"', sinopsis='"+taSinopsis.getText()+"' WHERE idtit="+titulo.getIdTit();
+        }
+
         SQLHelper.ejecutarUpdate(update);
         dispose();
         }

@@ -21,14 +21,14 @@ import java.util.logging.Logger;
  * @author OzChO
  */
 public class SQLHelper {
-    public static final String host="localhost:3306";
-    public static final String db="videoclub";
-    public static final String user="root";
-    public static final String pass="";
-//  public static final String host="144.76.19.105:3306";
-//  public static final String db="kanyuclub";
-//  public static final String user="kanyu";
-//  public static final String pass="elestanconoheque";
+//    public static final String host="localhost:3306";
+//    public static final String db="videoclub";
+//    public static final String user="root";
+//    public static final String pass="";
+  public static final String host="144.76.19.105:3306";
+  public static final String db="kanyuclub";
+  public static final String user="kanyu";
+  public static final String pass="elestanconoheque";
     public static final String[] categorias={"","DVD","Blu-Ray","XBOX","PS3"};
     
     public static ResultSet ejecutarInsert(String query){
@@ -36,6 +36,7 @@ public class SQLHelper {
         try {
             Connection conexion=DriverManager.getConnection("jdbc:mysql://"+host+"/"+db,user ,pass);
             Statement comando= conexion.createStatement();
+            comando.execute(query,Statement.RETURN_GENERATED_KEYS);
             devolucion=comando.getGeneratedKeys();
             
         } catch (SQLException ex) {

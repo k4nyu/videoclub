@@ -198,7 +198,7 @@ public class VistaEditarCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-//<<<<<<< HEAD
+
         String nombre, apellidos, direccion, telefono, email, dni;
         nombre= tfNombre.getText();
         apellidos=tfApellidos.getText();
@@ -230,35 +230,28 @@ public class VistaEditarCliente extends javax.swing.JDialog {
             }
             return;
         }
-        String update="UPDATE cliente SET nombre='"+nombre
-                +"', apellidos='"+apellidos
-                +"', direccion='"+direccion
-                +"', telefono='"+telefono
-                +"', email='"+email
-                +"', dni='"+dni
-                +"' WHERE idcli="+cliente.getIdCliente();
-//=======
-//        String update="";
-//        if(btLimpiar.isEnabled()){
-//          update="INSERT INTO cliente "
-//                + "(nombre, apellidos, direccion, telefono, email, dni,fechaltacli)"
-//                + " VALUES('"+tfNombre.getText()
-//                +"','"+tfApellidos.getText()
-//                +"','"+tfDireccion.getText()
-//                +"','"+tfTelefono.getText()
-//                +"','"+tfEmail.getText()
-//                +"','"+tfDNI.getText()
-//                +"', CURRENT_TIMESTAMP)";
-//        }else{
-//            
-//            update="UPDATE cliente SET nombre='"+tfNombre.getText()
-//                +"', apellidos='"+tfApellidos.getText()
-//                +"', direccion='"+tfDireccion.getText()
-//                +"', telefono='"+tfTelefono.getText()
-//                +"', email='"+tfEmail.getText()
-//                +"', dni='"+tfDNI.getText()
-//                +"' WHERE idcli="+cliente.getIdCliente();}
-//>>>>>>> origin/master
+       
+        String update="";
+        if(btLimpiar.isEnabled()){
+          update="INSERT INTO cliente "
+                + "(nombre, apellidos, direccion, telefono, email, dni,fechaltacli)"
+                + " VALUES('"+tfNombre.getText()
+                +"','"+tfApellidos.getText()
+                +"','"+tfDireccion.getText()
+                +"','"+tfTelefono.getText()
+                +"','"+tfEmail.getText()
+                +"','"+tfDNI.getText()
+                +"', CURRENT_TIMESTAMP)";
+        }else{
+            
+            update="UPDATE cliente SET nombre='"+tfNombre.getText()
+                +"', apellidos='"+tfApellidos.getText()
+                +"', direccion='"+tfDireccion.getText()
+                +"', telefono='"+tfTelefono.getText()
+                +"', email='"+tfEmail.getText()
+                +"', dni='"+tfDNI.getText()
+                +"' WHERE idcli="+cliente.getIdCliente();}
+
         SQLHelper.ejecutarUpdate(update);
         dispose();
     }//GEN-LAST:event_btAceptarActionPerformed
@@ -272,9 +265,6 @@ public class VistaEditarCliente extends javax.swing.JDialog {
         tfDNI.setText("");
     }//GEN-LAST:event_btLimpiarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
