@@ -85,7 +85,7 @@ public class VistaCrearTitulo extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(btLimpiar)
-                        .addGap(29, 29, 29)
+                        .addGap(62, 62, 62)
                         .addComponent(lbEditar))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(32, 32, 32)
