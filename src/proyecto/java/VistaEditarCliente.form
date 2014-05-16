@@ -29,7 +29,7 @@
                       <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
                       <Component id="btLimpiar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
-                      <Component id="lbEditar" min="-2" pref="148" max="-2" attributes="0"/>
+                      <Component id="lbCabecera" min="-2" pref="148" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -85,7 +85,7 @@
                       <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
                       <Component id="btLimpiar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="lbEditar" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="lbCabecera" min="-2" pref="55" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -128,7 +128,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lbEditar">
+    <Component class="javax.swing.JLabel" name="lbCabecera">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="0"/>

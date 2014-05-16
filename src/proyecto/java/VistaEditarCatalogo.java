@@ -30,7 +30,7 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
     public VistaEditarCatalogo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-       
+        lbCabecera.setText("Crear Título");
     }
 
     /**
@@ -46,7 +46,7 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
         btLimpiar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         btAceptar = new javax.swing.JButton();
-        lbEditar = new javax.swing.JLabel();
+        lbCabecera = new javax.swing.JLabel();
         lbTitulo = new javax.swing.JLabel();
         lbSinopsis = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -75,8 +75,8 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
             }
         });
 
-        lbEditar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbEditar.setText("Editar Título");
+        lbCabecera.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lbCabecera.setText("Editar Título");
 
         lbTitulo.setText("Titulo:");
 
@@ -113,7 +113,7 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(lbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lbCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -126,7 +126,7 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btLimpiar))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -246,7 +246,7 @@ public class VistaEditarCatalogo extends javax.swing.JDialog {
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btLimpiar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbEditar;
+    private javax.swing.JLabel lbCabecera;
     private javax.swing.JLabel lbSinopsis;
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JTextArea taSinopsis;

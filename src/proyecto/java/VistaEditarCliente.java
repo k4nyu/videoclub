@@ -36,6 +36,7 @@ public class VistaEditarCliente extends javax.swing.JDialog {
     public VistaEditarCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
          initComponents();  
+         lbCabecera.setText("Crear Cliente");
     }
 
     /**
@@ -47,7 +48,7 @@ public class VistaEditarCliente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbEditar = new javax.swing.JLabel();
+        lbCabecera = new javax.swing.JLabel();
         lbNombre = new javax.swing.JLabel();
         lbApellidos = new javax.swing.JLabel();
         lbDireccion = new javax.swing.JLabel();
@@ -66,8 +67,8 @@ public class VistaEditarCliente extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lbEditar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbEditar.setText("Editar Cliente");
+        lbCabecera.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lbCabecera.setText("Editar Cliente");
 
         lbNombre.setText("Nombre:");
 
@@ -112,7 +113,7 @@ public class VistaEditarCliente extends javax.swing.JDialog {
                         .addGap(26, 26, 26)
                         .addComponent(btLimpiar)
                         .addGap(32, 32, 32)
-                        .addComponent(lbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,7 +153,7 @@ public class VistaEditarCliente extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(btLimpiar))
-                    .addComponent(lbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,9 +287,9 @@ public class VistaEditarCliente extends javax.swing.JDialog {
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btLimpiar;
     private javax.swing.JLabel lbApellidos;
+    private javax.swing.JLabel lbCabecera;
     private javax.swing.JLabel lbDNI;
     private javax.swing.JLabel lbDireccion;
-    private javax.swing.JLabel lbEditar;
     private javax.swing.JLabel lbEmail;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JLabel lbTelefono;
