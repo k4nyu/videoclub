@@ -82,7 +82,7 @@ public class VistaAlquilados extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon volver = new ImageIcon("images/flechavolver.gif");
+        ImageIcon volver = new ImageIcon(getClass().getResource("/images/flechavolver.gif"));
         jButton1 = new javax.swing.JButton(volver);
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
