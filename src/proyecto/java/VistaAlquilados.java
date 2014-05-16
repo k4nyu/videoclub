@@ -184,14 +184,14 @@ public class VistaAlquilados extends javax.swing.JDialog {
         int id = (int)tabla.getModel().getValueAt(tabla.getSelectedRow(), 0);
         String titulo= (String)tabla.getModel().getValueAt(tabla.getSelectedRow(), 1);
         String categoria= (String)tabla.getModel().getValueAt(tabla.getSelectedRow(), 2);
-        JOptionPane.showConfirmDialog(rootPane, "Estás a punto de devolver \""+titulo+" - "+categoria+"\", ¿Es correcto?");
-        if(JOptionPane.YES_OPTION==0){
-        String update= "UPDATE alquilables SET alquilado='disponible' WHERE idal="+id;
-        SQLHelper.ejecutarUpdate(update);
-        update="UPDATE alquileres SET fechadevolucion=CURRENT_TIMESTAMP WHERE idal="+id;
-        SQLHelper.ejecutarUpdate(update);
-        JOptionPane.showMessageDialog(rootPane, "\""+titulo+" - "+categoria+"\", devuelto.");
-        refresh();
+        int opcion=JOptionPane.showConfirmDialog(rootPane, "Estás a punto de devolver \""+titulo+" - "+categoria+"\", ¿Es correcto?");
+        if(opcion==JOptionPane.YES_OPTION){
+            String update= "UPDATE alquilables SET alquilado='disponible' WHERE idal="+id;
+            SQLHelper.ejecutarUpdate(update);
+            update="UPDATE alquileres SET fechadevolucion=CURRENT_TIMESTAMP WHERE idal="+id;
+            SQLHelper.ejecutarUpdate(update);
+            JOptionPane.showMessageDialog(rootPane, "\""+titulo+" - "+categoria+"\", devuelto.");
+            refresh();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

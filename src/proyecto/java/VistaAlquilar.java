@@ -197,8 +197,8 @@ private void buscar() {
         int idtit= (int)tabla.getModel().getValueAt(tabla.getSelectedRow(), 1);
         String titulo=(String)tabla.getModel().getValueAt(tabla.getSelectedRow(), 2);
         String categoria= (String)tabla.getModel().getValueAt(tabla.getSelectedRow(),3);
-        JOptionPane.showConfirmDialog(rootPane, "¿Está seguro de que desea alquilar "+titulo+" - "+categoria+"?");
-        if(JOptionPane.YES_OPTION==0){
+        int opcion=JOptionPane.showConfirmDialog(rootPane, "¿Está seguro de que desea alquilar "+titulo+" - "+categoria+"?");
+        if(opcion==JOptionPane.YES_OPTION){
             String update="UPDATE alquilables SET alquilado='alquilado' where idal="+idal;
             SQLHelper.ejecutarUpdate(update);
             update="INSERT INTO alquileres(idcli, idal, idtit,  fechaextraccion) VALUES ("+cliente.getIdCliente()+", "+idal+", "
@@ -206,9 +206,6 @@ private void buscar() {
             SQLHelper.ejecutarInsert(update);
             JOptionPane.showMessageDialog(rootPane, "Alquiler exitoso.");
             refresh();
-        }
-        if(JOptionPane.NO_OPTION==1){
-            return;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
