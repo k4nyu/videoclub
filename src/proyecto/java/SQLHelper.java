@@ -25,14 +25,14 @@ import javax.swing.table.DefaultTableModel;
  * @author OzChO
  */
 public class SQLHelper {
-    public static final String host="localhost:3306";
-    public static final String db="videoclub";
-    public static final String user="root";
-    public static final String pass="";
-//  public static final String host="144.76.19.105:3306";
-//  public static final String db="kanyuclub";
-//  public static final String user="kanyu";
-//  public static final String pass="elestanconoheque";
+//    public static final String host="localhost:3306";
+//    public static final String db="videoclub";
+//    public static final String user="root";
+//    public static final String pass="";
+  public static final String host="144.76.19.105:3306";
+  public static final String db="kanyuclub";
+  public static final String user="kanyu";
+  public static final String pass="elestanconoheque";
     public static final String[] categorias={"","DVD","Blu-Ray","XBOX","PS3"};
     
     public static ResultSet ejecutarInsert(String query){
@@ -84,12 +84,12 @@ public class SQLHelper {
         return null;
    }
    public static ResultSet buscar(String tabla,HashMap<String,String> busqueda,int limite, int offset,String orderby){
-      return buscar(tabla, busqueda, limite, offset, orderby);
+      return buscar(tabla,"*", busqueda, limite, offset, orderby);
    }
    public static ResultSet buscar(String tabla,HashMap<String,String> busqueda,int limite, int offset){
     return buscar( tabla,busqueda,limite, offset,"1 ASC");
    }
-   public static ResultSet buscar(String tabla, String [] campos, HashMap<String,String> busqueda,int limite, int offset,String orderby){
+   public static ResultSet buscar(String tabla, String campos, HashMap<String,String> busqueda,int limite, int offset,String orderby){
       ResultSet devolucion=null;
         String consulta="SELECT "+campos+" FROM "+tabla;
         if(!busqueda.isEmpty()){

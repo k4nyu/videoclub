@@ -59,7 +59,7 @@ private void buscar() {
             for(String campo:campos){
                 mapa.put(campo,jTextField1.getText());
             }
-            ResultSet rs=SQLHelper.buscar(tablax,campos, mapa,500,0);
+            ResultSet rs=SQLHelper.buscar(tablax,campos, mapa,500,0,"titulo ASC");
             while(rs.next()){
                 Vector tupla=new Vector();
                 for(int i=1;i<=cab.size();i++){
