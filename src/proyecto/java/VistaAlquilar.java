@@ -56,6 +56,7 @@ private void buscar() {
             HashMap<String, String> mapa = new HashMap<String, String>();
             Vector cab=new Vector(Arrays.asList(cabecera));
             Vector data=new Vector();
+            
             for(String campo:campos){
                 mapa.put(campo,jTextField1.getText());
             }

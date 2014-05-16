@@ -105,6 +105,15 @@ public class SQLHelper {
         consulta+="ORDER BY "+orderby+" LIMIT "+limite+" OFFSET "+offset;
       return ejecutarConsulta(consulta);
    }
+   public static ResultSet buscar(String tabla, String[] campos, HashMap<String,String> busqueda,int limite, int offset,String orderby){
+       String tmp="$#$";
+       for(String campo:campos){
+           tmp=tmp.replace("$#$",campo+",$#$");
+       }
+       tmp=tmp.replace(",$#$", "");
+       tmp=tmp.replace("$#$","*");
+       return buscar(tabla,tmp,busqueda,limite,offset,orderby);
+   }
    public static void rellenarTabla(JTable tabla, ResultSet rs, String[] cabecera) throws SQLException{
             Vector cab=new Vector(Arrays.asList(cabecera));
             Vector data=new Vector();
