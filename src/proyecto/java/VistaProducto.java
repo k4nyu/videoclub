@@ -185,7 +185,7 @@ public class VistaProducto extends javax.swing.JDialog {
         String titulo= (String)tabla.getModel().getValueAt(tabla.getSelectedRow(), 1);
         String categoria= (String)tabla.getModel().getValueAt(tabla.getSelectedRow(), 2);
         String alquilado= (String)tabla.getModel().getValueAt(tabla.getSelectedRow(), 4);
-        if(alquilado.equalsIgnoreCase(alquilado)){
+        if(alquilado.equalsIgnoreCase("alquilado")){
             JOptionPane.showMessageDialog(rootPane, "No puedes borrar un producto que está alquilado.");
         }
         else{
@@ -195,6 +195,11 @@ public class VistaProducto extends javax.swing.JDialog {
             SQLHelper.ejecutarUpdate(update);
             JOptionPane.showMessageDialog(rootPane, "\""+titulo+" - "+categoria+"\", eliminado.");
             refresh();
+        }
+        else{
+            if(JOptionPane.NO_OPTION={
+                
+            }
         }
         }
     }//GEN-LAST:event_jButton3ActionPerformed

@@ -91,10 +91,6 @@ public static String mostrarProductoPorCategoria(Statement s, String categoria){
     return VistaPrincipal.mostrarDatos(r);
 }
 
-public String getNombreCategoria(){
-    return SQLHelper.categorias[this.getIdcat()];
-}
-
     public void setAlquilado(String alquilado) {
         this.alquilado = alquilado;
     }

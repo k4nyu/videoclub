@@ -207,6 +207,9 @@ private void buscar() {
             JOptionPane.showMessageDialog(rootPane, "Alquiler exitoso.");
             refresh();
         }
+        if(JOptionPane.NO_OPTION==1){
+            return;
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
