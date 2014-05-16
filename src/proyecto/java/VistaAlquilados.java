@@ -66,9 +66,7 @@ public class VistaAlquilados extends javax.swing.JDialog {
             rs= SQLHelper.ejecutarConsulta(consulta);
             
             SQLHelper.rellenarTabla(tabla, rs, cabecera);
-           
-          
-           
+            
         } catch (SQLException ex) {
             Logger.getLogger(VistaAlquilados.class.getName()).log(Level.SEVERE, null, ex);
         }
