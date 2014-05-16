@@ -41,7 +41,7 @@ public class Cliente {
             String telefono,String email,String dni){
         Cliente nuevo=null;
         try {
-            String insercion="INSERT INTO cliente(nombre,apellidos,direccion,telefono,email,dni,fechaalta)"
+            String insercion="INSERT INTO cliente(nombre,apellidos,direccion,telefono,email,dni,fechaltacli)"
                     + " VALUES ('"+nombre+"',"
                     + "'"+apellidos+"',"
                     + "'"+direccion+"',"
@@ -57,7 +57,7 @@ public class Cliente {
                         resultado.getString("telefono"), 
                         resultado.getString("email"),
                         resultado.getString("dni"), 
-                        resultado.getTimestamp("fechaaltacli"),
+                        resultado.getTimestamp("fechaltacli"),
                         resultado.getInt("idcli"));
             }
         } catch (SQLException ex) {
@@ -87,7 +87,7 @@ public class Cliente {
                     nuevo.setTelefono(rs.getString("telefono"));
                     nuevo.setDni(rs.getString("dni"));
                     nuevo.setEmail(rs.getString("email"));
-                    nuevo.setFechaAlta(rs.getTimestamp("fechaaltacli"));
+                    nuevo.setFechaAlta(rs.getTimestamp("fechaltacli"));
                   
                 }
             } catch (SQLException ex) {
@@ -111,7 +111,7 @@ public class Cliente {
                     nuevo.setTelefono(rs.getString("telefono"));
                     nuevo.setDni(rs.getString("dni"));
                     nuevo.setEmail(rs.getString("email"));
-                    nuevo.setFechaAlta(rs.getTimestamp("fechaaltacli"));
+                    nuevo.setFechaAlta(rs.getTimestamp("fechaltacli"));
                   
                 }
             } catch (SQLException ex) {

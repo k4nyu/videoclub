@@ -15,25 +15,26 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static proyecto.java.VistaAlquilados.cliente;
 
 /**
  *
  * @author Kanyu
  */
-public class VistaAlquilados extends javax.swing.JDialog {
+public class VistaProducto extends javax.swing.JDialog {
 
     /**
-     * Creates new form VistaAlquilados
+     * Creates new form VistaProducto
      */
-    public static Cliente cliente;
+    public static Titulo titulo;
    private String [] cabecera;
-    public VistaAlquilados(java.awt.Frame parent, boolean modal, Cliente cliente) {
+    public VistaProducto(java.awt.Frame parent, boolean modal, Titulo titulo) {
         super(parent, modal);
-        this.cliente=cliente;
+        this.titulo=titulo;
         initComponents();
-        lbCabecera.setText("Historial de "+cliente.getNombre());
+        lbCabecera.setText("Gestión de "+titulo.getTitulo());
         cabecera = new String[]{
-                "ID Producto", "Título", "Categoría", "Fecha Entrada", "Fecha Devolución"
+                "ID Producto", "Título", "Categoría", "Fecha Alta", "Estado"
             };
         refresh();
     }
@@ -41,11 +42,11 @@ public class VistaAlquilados extends javax.swing.JDialog {
     try {
             Vector cab=new Vector(Arrays.asList(cabecera));
             Vector data=new Vector();
-            String consulta="SELECT * FROM cliente WHERE idcli="+cliente.getIdCliente();
+            String consulta="SELECT * FROM titulo WHERE idtit="+titulo.getIdTit();
             ResultSet rs = SQLHelper.ejecutarConsulta(consulta);
             rs.next();
-            consulta="select alquileres.idal, titulo.titulo, categoria.nombre, fechaextraccion, fechadevolucion from cliente inner join alquileres using (idcli) inner join titulo\n" +
-                    "using (idtit) inner join alquilables using(idal) inner join categoria using(idcat) where idcli="+rs.getInt("idcli");
+            consulta="select idal, titulo, categoria.nombre, alquilables.fechaalta, alquilables.alquilado from alquilables "
+                    + "inner join titulo using(idtit) inner join categoria using (idcat) where idtit="+rs.getInt("idtit");
             rs= SQLHelper.ejecutarConsulta(consulta);
             while(rs.next()){
                 Vector tupla=new Vector();
@@ -78,9 +79,9 @@ public class VistaAlquilados extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton(volver);
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        lbCabecera = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        lbCabecera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,7 +96,7 @@ public class VistaAlquilados extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID Producto", "Título", "Categoría", "Fecha Entrada", "Fecha Devolución"
+                "ID Producto", "Título", "Categoría", "Fecha Alta", "Estado"
             }
         ) {
             Class[] types = new Class [] {
@@ -115,56 +116,61 @@ public class VistaAlquilados extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tabla);
 
-        lbCabecera.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        jButton2.setText("Alquilar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Devolver");
+        jButton3.setText("Eliminar producto");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
+        jButton2.setText("Agregar producto");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        lbCabecera.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lbCabecera.setText("Cabecera");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)
-                        .addComponent(lbCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                .addGap(83, 83, 83)
+                .addComponent(lbCabecera, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addGap(7, 7, 7))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE))
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbCabecera)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCabecera)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addContainerGap(257, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
@@ -174,26 +180,24 @@ public class VistaAlquilados extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        VistaAlquilar alquilar= new VistaAlquilar(null, true, cliente);
-        alquilar.setVisible(true);
-        refresh();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int id = (int)tabla.getModel().getValueAt(tabla.getSelectedRow(), 0);
         String titulo= (String)tabla.getModel().getValueAt(tabla.getSelectedRow(), 1);
         String categoria= (String)tabla.getModel().getValueAt(tabla.getSelectedRow(), 2);
-        JOptionPane.showConfirmDialog(rootPane, "Estás a punto de devolver \""+titulo+" - "+categoria+"\", ¿Es correcto?");
+        JOptionPane.showConfirmDialog(rootPane, "Estás a punto de eliminar \""+titulo+" - "+categoria+"\", ¿Es correcto?");
         if(JOptionPane.YES_OPTION==0){
-        String update= "UPDATE alquilables SET alquilado='disponible' WHERE idal="+id;
-        SQLHelper.ejecutarUpdate(update);
-        update="UPDATE alquileres SET fechadevolucion=CURRENT_TIMESTAMP WHERE idal="+id;
-        SQLHelper.ejecutarUpdate(update);
-        JOptionPane.showMessageDialog(rootPane, "\""+titulo+" - "+categoria+"\", devuelto.");
-        refresh();
+            String update= "DELETE FROM alquilables WHERE idal="+id;
+            SQLHelper.ejecutarUpdate(update);
+            JOptionPane.showMessageDialog(rootPane, "\""+titulo+" - "+categoria+"\", eliminado.");
+            refresh();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        VistaAñadirProducto producto= new VistaAñadirProducto(null, true, titulo);
+        producto.setVisible(true);
+        refresh();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,20 +216,20 @@ public class VistaAlquilados extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaAlquilados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaAlquilados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaAlquilados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaAlquilados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VistaAlquilados dialog = new VistaAlquilados(new javax.swing.JFrame(), true, cliente);
+                VistaProducto dialog = new VistaProducto(new javax.swing.JFrame(), true, titulo);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -246,5 +250,3 @@ public class VistaAlquilados extends javax.swing.JDialog {
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }
-//select alquileres.idal, titulo.titulo, categoria.nombre, fechaextraccion, fechadevolucion from cliente inner join alquileres using (idcli) inner join titulo
-//using (idtit) inner join alquilables using(idal) inner join categoria using(idcat) where idcli=4

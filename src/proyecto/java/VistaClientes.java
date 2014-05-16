@@ -133,6 +133,9 @@ public class VistaClientes extends javax.swing.JDialog {
             }
         });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField1KeyTyped(evt);
             }
@@ -336,13 +339,13 @@ private void buscar() {
     }//GEN-LAST:event_btEditActionPerformed
 
     private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed
-        javax.swing.JDialog editar=null;
+        javax.swing.JDialog crear=null;
         if(esCliente){
-         editar=new VistaEditarCliente(null, true);
+         crear=new VistaCrearCliente(null, true);
         }else{
-         editar=new VistaEditarCatalogo(null,true);
+         crear=new VistaCrearTitulo(null,true);
         }
-           editar.setVisible(true);
+           crear.setVisible(true);
            buscar();
     }//GEN-LAST:event_btNuevoActionPerformed
 
@@ -361,8 +364,23 @@ private void buscar() {
            VistaAlquilados alquilados= new VistaAlquilados(null, true, cliente);
            alquilados.setVisible(true);
         }
-        
+        else{
+           int fila= jTable1.getSelectedRow();
+           int idtit= (int)jTable1.getModel().getValueAt(fila, 0);
+           String titulo=(String)jTable1.getModel().getValueAt(fila, 1);
+           Timestamp fechaalta=(Timestamp)jTable1.getModel().getValueAt(fila, 2);
+           String sinopsis = (String)jTable1.getModel().getValueAt(fila, 3);
+           Titulo titulox= new Titulo(titulo, sinopsis, fechaalta, idtit);
+           VistaProducto productos= new VistaProducto(null, true, titulox);
+           productos.setVisible(true);
+        }
     }//GEN-LAST:event_btAlquilerActionPerformed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            buscar();
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlquiler;

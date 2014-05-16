@@ -22,16 +22,16 @@ public class Producto {
     private int idtit;
     private int idcat;
     private Date fechaAlta;
-    private int alquilado=0;
+    private String alquilado="disponible";
     
     public static Producto insertarProducto(String idtit, String idcat){
         Producto nuevo=null;
         try {
             String insercion="INSERT INTO alquilables(idtit, idcat, fechaalta, alquilado)"
-                    + " VALUES ('"+idtit+"', "
+                    + " VALUES ("+idtit+", "
                     + idcat +", "
                     + "CURRENT_TIMESTAMP, "
-                    + "0)";
+                    + "'disponible')";
             ResultSet resultado=SQLHelper.ejecutarInsert(insercion);
             if(resultado.next()){
                 try {
@@ -61,7 +61,7 @@ public class Producto {
                     nuevo.setIdtit(rs.getInt("itit"));
                     nuevo.setIdcat(rs.getInt("idcat"));
                     nuevo.setFechaAlta(rs.getDate("fechaalta"));
-                    nuevo.setAlquilado(rs.getInt("alquilado"));
+                    nuevo.setAlquilado(rs.getString("alquilado"));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,7 +94,7 @@ public String getNombreCategoria(){
     return SQLHelper.categorias[this.getIdcat()];
 }
 
-    public void setAlquilado(int alquilado) {
+    public void setAlquilado(String alquilado) {
         this.alquilado = alquilado;
     }
 
@@ -114,7 +114,7 @@ public String getNombreCategoria(){
         this.idal = idal;
     }
 
-    public int getAlquilado() {
+    public String getAlquilado() {
         return alquilado;
     }
 

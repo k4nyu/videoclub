@@ -214,6 +214,7 @@ public class VistaCrearCliente extends javax.swing.JDialog {
         }
         else{
         Cliente.insertarCliente(nombre, apellidos, direccion, telefono, email, dni);
+        JOptionPane.showMessageDialog(rootPane, "¡Cliente "+nombre+" "+apellidos+" creado!");
         dispose();
         }
     }//GEN-LAST:event_btAceptarActionPerformed
