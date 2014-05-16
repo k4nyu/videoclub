@@ -41,11 +41,10 @@ public class VistaAlquilados extends javax.swing.JDialog {
         cabecera = new String[]{
                 "ID Producto", "Título", "Categoría", "Fecha Entrada", "Fecha Devolución"
             };
-         this.tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+      this.tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             
         public void valueChanged(ListSelectionEvent event) {
-            // do some actions here, for example
-            // print first column value from selected row
+           
             jButton3.setEnabled(tabla.getValueAt(tabla.getSelectedRow(), tabla.getColumnCount()-1)==null);
             
         }

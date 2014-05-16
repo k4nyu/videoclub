@@ -341,9 +341,9 @@ private void buscar() {
     private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed
         javax.swing.JDialog crear=null;
         if(esCliente){
-         crear=new VistaCrearCliente(null, true);
+         crear=new VistaEditarCliente(null, true);
         }else{
-         crear=new VistaCrearTitulo(null,true);
+         crear=new VistaEditarCatalogo(null,true);
         }
            crear.setVisible(true);
            buscar();

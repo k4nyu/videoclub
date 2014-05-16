@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import static proyecto.java.VistaAlquilados.cliente;
 
@@ -36,6 +38,15 @@ public class VistaProducto extends javax.swing.JDialog {
         cabecera = new String[]{
                 "ID Producto", "Título", "Categoría", "Fecha Alta", "Estado"
             };
+         this.tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            
+        public void valueChanged(ListSelectionEvent event) {
+           
+            jButton3.setEnabled(tabla.getSelectedRow()>-1);
+            
+        }
+    
+    });
         refresh();
     }
     private void refresh(){
@@ -114,9 +125,11 @@ public class VistaProducto extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tabla);
 
         jButton3.setText("Eliminar producto");
+        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
