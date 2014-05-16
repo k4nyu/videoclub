@@ -6,6 +6,7 @@
 
 package proyecto.java;
 
+import com.sun.corba.se.impl.orbutil.ORBConstants;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -13,7 +14,10 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,40 +31,45 @@ public class VistaAlquilados extends javax.swing.JDialog {
      */
     public static Cliente cliente;
    private String [] cabecera;
+ 
     public VistaAlquilados(java.awt.Frame parent, boolean modal, Cliente cliente) {
         super(parent, modal);
         this.cliente=cliente;
         initComponents();
+     
         lbCabecera.setText("Historial de "+cliente.getNombre());
         cabecera = new String[]{
                 "ID Producto", "Título", "Categoría", "Fecha Entrada", "Fecha Devolución"
             };
+         this.tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            
+        public void valueChanged(ListSelectionEvent event) {
+            // do some actions here, for example
+            // print first column value from selected row
+            jButton3.setEnabled(tabla.getValueAt(tabla.getSelectedRow(), tabla.getColumnCount()-1)==null);
+            
+        }
+    
+    });
         refresh();
     }
     private void refresh(){
     try {
-            Vector cab=new Vector(Arrays.asList(cabecera));
-            Vector data=new Vector();
+           
             String consulta="SELECT * FROM cliente WHERE idcli="+cliente.getIdCliente();
             ResultSet rs = SQLHelper.ejecutarConsulta(consulta);
             rs.next();
-            consulta="select alquileres.idal, titulo.titulo, categoria.nombre, fechaextraccion, fechadevolucion from cliente inner join alquileres using (idcli) inner join titulo\n" +
-                    "using (idtit) inner join alquilables using(idal) inner join categoria using(idcat) where idcli="+rs.getInt("idcli");
+            consulta="select * from (select alquileres.idal, titulo.titulo, categoria.nombre, fechaextraccion, fechadevolucion from cliente inner join alquileres using (idcli) inner join titulo\n" +
+                     "using (idtit) inner join alquilables using(idal) inner join categoria using(idcat) where fechadevolucion is null and idcli="+rs.getInt("idcli")+" order by fechaextraccion desc) as a1";
+            consulta+=" UNION ";
+            consulta+="select * from (select alquileres.idal, titulo.titulo, categoria.nombre, fechaextraccion, fechadevolucion from cliente inner join alquileres using (idcli) inner join titulo\n" +
+                      "using (idtit) inner join alquilables using(idal) inner join categoria using(idcat) where fechadevolucion is not null and idcli="+rs.getInt("idcli")+" order by fechaextraccion desc) as a2";
             rs= SQLHelper.ejecutarConsulta(consulta);
-            while(rs.next()){
-                Vector tupla=new Vector();
-                for(int i=1;i<=cab.size();i++){
-                    tupla.add(rs.getObject(i));
-                }
-                data.add(tupla);
-            }
-            tabla.setModel(new DefaultTableModel(data, cab){
-
-            @Override
-            public boolean isCellEditable(int i, int i1) {
-                return false; //To change body of generated methods, choose Tools | Templates.
-            }
-        });
+            
+            SQLHelper.rellenarTabla(tabla, rs, cabecera);
+           
+          
+           
         } catch (SQLException ex) {
             Logger.getLogger(VistaAlquilados.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -113,6 +122,7 @@ public class VistaAlquilados extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tabla);
 
         lbCabecera.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -125,6 +135,7 @@ public class VistaAlquilados extends javax.swing.JDialog {
         });
 
         jButton3.setText("Devolver");
+        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -139,14 +150,16 @@ public class VistaAlquilados extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(87, 87, 87)
                         .addComponent(lbCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -162,9 +175,9 @@ public class VistaAlquilados extends javax.swing.JDialog {
                             .addComponent(lbCabecera)
                             .addComponent(jButton2)
                             .addComponent(jButton3))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         pack();
