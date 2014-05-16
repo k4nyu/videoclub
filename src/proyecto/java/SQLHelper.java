@@ -11,10 +11,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -49,6 +53,7 @@ public class SQLHelper {
         try {
             Connection conexion=DriverManager.getConnection("jdbc:mysql://"+host+"/"+db,user ,pass);
             Statement comando= conexion.createStatement();
+            System.out.println(consulta);
             devolucion=comando.executeQuery(consulta);
             
             
@@ -79,8 +84,14 @@ public class SQLHelper {
         return null;
    }
    public static ResultSet buscar(String tabla,HashMap<String,String> busqueda,int limite, int offset,String orderby){
+      return buscar(tabla, busqueda, limite, offset, orderby);
+   }
+   public static ResultSet buscar(String tabla,HashMap<String,String> busqueda,int limite, int offset){
+    return buscar( tabla,busqueda,limite, offset,"1 ASC");
+   }
+   public static ResultSet buscar(String tabla, String [] campos, HashMap<String,String> busqueda,int limite, int offset,String orderby){
       ResultSet devolucion=null;
-        String consulta="SELECT * FROM "+tabla;
+        String consulta="SELECT "+campos+" FROM "+tabla;
         if(!busqueda.isEmpty()){
             consulta+=" WHERE $#$";
             Set<String> keyset=busqueda.keySet();
@@ -94,7 +105,24 @@ public class SQLHelper {
         consulta+="ORDER BY "+orderby+" LIMIT "+limite+" OFFSET "+offset;
       return ejecutarConsulta(consulta);
    }
-   public static ResultSet buscar(String tabla,HashMap<String,String> busqueda,int limite, int offset){
-    return buscar( tabla,busqueda,limite, offset,"1 ASC");
+   public static void rellenarTabla(JTable tabla, ResultSet rs, String[] cabecera) throws SQLException{
+            Vector cab=new Vector(Arrays.asList(cabecera));
+            Vector data=new Vector();
+            rs.beforeFirst();
+            while(rs.next()){
+                Vector tupla=new Vector();
+                for(int i=1;i<=cab.size();i++){
+                    tupla.add(rs.getObject(i));
+                }
+                data.add(tupla);
+            }
+            tabla.setModel(new DefaultTableModel(data, cab){
+
+            @Override
+            public boolean isCellEditable(int i, int i1) {
+                return false; //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+       
    }
 }

@@ -28,8 +28,8 @@ public class VistaAlquilar extends javax.swing.JDialog {
      */
     private static Cliente cliente;
     private String [] cabecera;
-    String[] campos = new String[] {"idal","idtit","titulo", "nombre"};
-    String tablax="titulo";
+    String[] campos = new String[] {"alquilable.idal","alquilable.idtit","titulo", "categoria.nombre"};
+    String tablax="titulo inner join alquilables using (idtit) inner join categoria using (idcat)";
     public VistaAlquilar(java.awt.Frame parent, boolean modal, Cliente cliente) {
         super(parent, modal);
         this.cliente=cliente;
@@ -41,27 +41,12 @@ public class VistaAlquilar extends javax.swing.JDialog {
     }
     private void refresh(){
         try {
-            Vector cab=new Vector(Arrays.asList(cabecera));
-            Vector data=new Vector();
-            String consulta="";
+            
             ResultSet rs=null;
-            consulta="select idal, idtit, titulo.titulo, categoria.nombre from titulo inner join alquilables using (idtit) "
+            String consulta="select idal, idtit, titulo.titulo, categoria.nombre from titulo inner join alquilables using (idtit) "
                     + "inner join categoria using (idcat) where alquilado='disponible'";
             rs= SQLHelper.ejecutarConsulta(consulta);
-            while(rs.next()){
-                Vector tupla=new Vector();
-                for(int i=1;i<=cab.size();i++){
-                    tupla.add(rs.getObject(i));
-                }
-                data.add(tupla);
-            }
-            tabla.setModel(new DefaultTableModel(data, cab){
-
-            @Override
-            public boolean isCellEditable(int i, int i1) {
-                return false; //To change body of generated methods, choose Tools | Templates.
-            }
-        });
+            SQLHelper.rellenarTabla(tabla, rs, cabecera);
         } catch (SQLException ex) {
             Logger.getLogger(VistaAlquilados.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,7 +59,7 @@ private void buscar() {
             for(String campo:campos){
                 mapa.put(campo,jTextField1.getText());
             }
-            ResultSet rs=SQLHelper.buscar(tablax, mapa,500,0);
+            ResultSet rs=SQLHelper.buscar(tablax,campos, mapa,500,0);
             while(rs.next()){
                 Vector tupla=new Vector();
                 for(int i=1;i<=cab.size();i++){
