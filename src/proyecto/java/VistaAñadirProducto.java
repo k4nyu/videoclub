@@ -118,18 +118,20 @@ public class VistaAñadirProducto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-        int categoria=0;
+        int categoria=1;
         int copias=0;
-        int contador=1;
+        int contador=0;
         String idtit=Integer.toString(titulo.getIdTit());
-        for(int i=0;i<cbCategoria.getItemCount();i++)
-            if(cbCategoria.getSelectedIndex()==i)
-                categoria=i+1;
-        for(int i=0;i<cbCopias.getItemCount();i++)
-            if(cbCopias.getSelectedIndex()==i)
-                copias=i+1;
+        if(cbCategoria.getSelectedItem()=="Blu-Ray")
+            categoria=2;
+        if(cbCategoria.getSelectedItem()=="XBOX 360")
+            categoria=3;
+        if(cbCategoria.getSelectedItem()=="PS3")
+            categoria=4;
+        copias=cbCopias.getSelectedIndex()+1;
+        String categoriax= Integer.toString(categoria);
         while(contador<copias){
-            Producto.insertarProducto(idtit, categoria+"");
+            Producto.insertarProducto(idtit, categoriax);
             contador++;
         }
         JOptionPane.showMessageDialog(rootPane, "Se ha/n agregado "+contador+" ítem/s.");

@@ -28,7 +28,7 @@ public class VistaAlquilar extends javax.swing.JDialog {
      */
     private static Cliente cliente;
     private String [] cabecera;
-    String[] campos = new String[] {"titulo", "nombre"};
+    String[] campos = new String[] {"idal","idtit","titulo", "nombre"};
     String tablax="titulo";
     public VistaAlquilar(java.awt.Frame parent, boolean modal, Cliente cliente) {
         super(parent, modal);
@@ -46,7 +46,7 @@ public class VistaAlquilar extends javax.swing.JDialog {
             String consulta="";
             ResultSet rs=null;
             consulta="select idal, idtit, titulo.titulo, categoria.nombre from titulo inner join alquilables using (idtit) "
-                    + "inner join categoria using (idcat) where alquilado='alquilado'";
+                    + "inner join categoria using (idcat) where alquilado='disponible'";
             rs= SQLHelper.ejecutarConsulta(consulta);
             while(rs.next()){
                 Vector tupla=new Vector();
@@ -108,6 +108,7 @@ private void buscar() {
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -116,14 +117,14 @@ private void buscar() {
 
             },
             new String [] {
-                "Título", "Categoría"
+                "ID Producto", "ID Título", "Título", "Categoría"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -158,6 +159,13 @@ private void buscar() {
 
         jLabel1.setText("Buscar:");
 
+        jButton3.setText("Buscar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,6 +180,8 @@ private void buscar() {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -188,7 +198,8 @@ private void buscar() {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jButton3))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -221,6 +232,10 @@ private void buscar() {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        buscar();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,6 +282,7 @@ private void buscar() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;

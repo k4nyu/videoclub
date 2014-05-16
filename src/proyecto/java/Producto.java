@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +22,7 @@ public class Producto {
     private int idal;
     private int idtit;
     private int idcat;
-    private Date fechaAlta;
+    private Timestamp fechaAlta;
     private String alquilado="disponible";
     
     public static Producto insertarProducto(String idtit, String idcat){
@@ -58,9 +59,9 @@ public class Producto {
                 if(rs.getInt("idal")!=0){
                     nuevo=new Producto();
                     nuevo.setIdal(rs.getInt("idal"));
-                    nuevo.setIdtit(rs.getInt("itit"));
+                    nuevo.setIdtit(rs.getInt("idtit"));
                     nuevo.setIdcat(rs.getInt("idcat"));
-                    nuevo.setFechaAlta(rs.getDate("fechaalta"));
+                    nuevo.setFechaAlta(rs.getTimestamp("fechaalta"));
                     nuevo.setAlquilado(rs.getString("alquilado"));
                 }
             } catch (SQLException ex) {
@@ -98,7 +99,7 @@ public String getNombreCategoria(){
         this.alquilado = alquilado;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(Timestamp fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -118,7 +119,7 @@ public String getNombreCategoria(){
         return alquilado;
     }
 
-    public Date getFechaAlta() {
+    public Timestamp getFechaAlta() {
         return fechaAlta;
     }
 
