@@ -127,7 +127,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(add)"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon add = new ImageIcon(getClass().getResource(&quot;/images/add.gif&quot;));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon add=null;&#xa;try{&#xa;add = new ImageIcon(getClass().getResource(&quot;/images/add.gif&quot;));&#xa;}catch(Exception ex){&#xa;add = new ImageIcon(&quot;images/add.gif&quot;);&#xa;}"/>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btNuevo.setBorder(null);"/>
       </AuxValues>
     </Component>
@@ -142,7 +142,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(volver)"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon volver=new ImageIcon(getClass().getResource(&quot;/images/flechavolver.gif&quot;));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon volver=null;&#xa;try{&#xa;volver=new ImageIcon(getClass().getResource(&quot;/images/flechavolver.gif&quot;));&#xa;}catch (Exception ex){&#xa;volver=new ImageIcon(&quot;images/flechavolver.gif&quot;);&#xa;}"/>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="// to remote the spacing between the image and button&apos;s borders&#xa;btVolver.setMargin(new Insets(0, 0, 0, 0));&#xa;// to remove the border&#xa;btVolver.setBorder(null);"/>
       </AuxValues>
     </Component>
@@ -235,7 +235,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(edit)"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon edit = new ImageIcon(getClass().getResource(&quot;/images/pencil.png&quot;));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon edit = null;&#xa;try{&#xa;&#xa;edit = new ImageIcon(getClass().getResource(&quot;/images/pencil.png&quot;));&#xa;}catch(Exception ex){&#xa;edit = new ImageIcon(&quot;images/pencil.png&quot;);&#xa;&#xa;}"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btAlquiler">
@@ -247,7 +247,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(cd)"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon cd = new ImageIcon(getClass().getResource(&quot;/images/cd_icon.gif&quot;));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon cd =null;&#xa;try{&#xa;cd = new ImageIcon(getClass().getResource(&quot;/images/cd_icon.gif&quot;));&#xa;}catch(Exception ex) {&#xa;cd=new ImageIcon(&quot;images/cd_icon.gif&quot;);&#xa;&#xa;}"/>
       </AuxValues>
     </Component>
   </SubComponents>

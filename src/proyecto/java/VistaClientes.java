@@ -106,16 +106,39 @@ public class VistaClientes extends javax.swing.JDialog {
         btBuscar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        ImageIcon add = new ImageIcon(getClass().getResource("/images/add.gif"));
+        ImageIcon add=null;
+        try{
+            add = new ImageIcon(getClass().getResource("/images/add.gif"));
+        }catch(Exception ex){
+            add = new ImageIcon("images/add.gif");
+        }
         btNuevo = new javax.swing.JButton(add);
-        ImageIcon volver=new ImageIcon(getClass().getResource("/images/flechavolver.gif"));
+        ImageIcon volver=null;
+        try{
+            volver=new ImageIcon(getClass().getResource("/images/flechavolver.gif"));
+        }catch (Exception ex){
+            volver=new ImageIcon("images/flechavolver.gif");
+        }
         btVolver = new javax.swing.JButton(volver);
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        ImageIcon edit = new ImageIcon(getClass().getResource("/images/pencil.png"));
+        ImageIcon edit = null;
+        try{
+
+            edit = new ImageIcon(getClass().getResource("/images/pencil.png"));
+        }catch(Exception ex){
+            edit = new ImageIcon("images/pencil.png");
+
+        }
         btEdit = new javax.swing.JButton(edit);
-        ImageIcon cd = new ImageIcon(getClass().getResource("/images/cd_icon.gif"));
+        ImageIcon cd =null;
+        try{
+            cd = new ImageIcon(getClass().getResource("/images/cd_icon.gif"));
+        }catch(Exception ex) {
+            cd=new ImageIcon("images/cd_icon.gif");
+
+        }
         btAlquiler = new javax.swing.JButton(cd);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);

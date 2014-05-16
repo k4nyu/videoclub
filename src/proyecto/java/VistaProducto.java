@@ -86,7 +86,12 @@ public class VistaProducto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon volver = new ImageIcon(getClass().getResource("/images/flechavolver.gif"));
+        ImageIcon volver=null;
+        try{
+            volver=new ImageIcon(getClass().getResource("/images/flechavolver.gif"));
+        }catch (Exception ex){
+            volver=new ImageIcon("images/flechavolver.gif");
+        }
         jButton1 = new javax.swing.JButton(volver);
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();

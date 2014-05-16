@@ -75,7 +75,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(volver)"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon volver = new ImageIcon(getClass().getResource(&quot;/images/flechavolver.gif&quot;));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon volver=null;&#xa;        try{&#xa;            volver=new ImageIcon(getClass().getResource(&quot;/images/flechavolver.gif&quot;));&#xa;        }catch (Exception ex){&#xa;            volver=new ImageIcon(&quot;images/flechavolver.gif&quot;);&#xa;        }"/>
       </AuxValues>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
